@@ -49,7 +49,7 @@ const Usuarios = () => {
       }
     };
     fetchUsuarios();
-  }, [filtro]);
+  }, [filtro, token, usuarios]); // Añadido 'token' y 'usuarios'
 
   const handleFiltroChange = (event) => {
     setFiltro(event.target.value);
