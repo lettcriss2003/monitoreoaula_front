@@ -4,7 +4,7 @@
   },
   "routes": [
     {
-      "route": "/{*path}.{*ext}",
+      "route": "/*",
       "serve": "/index.html",
       "statusCode": 200
     }
