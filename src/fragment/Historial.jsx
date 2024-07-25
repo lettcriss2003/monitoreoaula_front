@@ -15,7 +15,7 @@ import {
   TEMPERATURA_ACEPTABLE,
   HUMEDAD_ACEPTABLE,
   CO2_ACEPTABLE
-} from '../utilidades/constantes/metricas'; // Ajusta la ruta según tu estructura
+} from '../utilidades/constantes/metricas';
 
 const Historial = () => {
   const [datos, setDatos] = useState([]);
@@ -25,7 +25,7 @@ const Historial = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const token = getToken();
 
-  const agruparDatos = (datos) => {
+  const agruparDatos = useCallback((datos) => {
     const historialAgrupado = {};
     datos.forEach((dato) => {
       const key = `${dato.fecha} ${dato.hora}`;
@@ -47,9 +47,8 @@ const Historial = () => {
         estadoAula: determinarNivelGeneral(parseFloat(temperatura), parseFloat(humedad), parseFloat(co2)),
       };
     });
-  };
+  }, []);
 
-  // Using useCallback to memoize fetchData
   const fetchData = useCallback(async () => {
     try {
       const fechaFormatted = fechaSeleccionada ? fechaSeleccionada.toISOString().slice(0, 10) : '';
@@ -60,29 +59,11 @@ const Historial = () => {
     } catch (error) {
       console.error(error);
     }
-  }, [token, paginaActual, fechaSeleccionada, agruparDatos]); // Añadir agruparDatos aquí
+  }, [token, paginaActual, fechaSeleccionada, agruparDatos]);
 
   useEffect(() => {
     fetchData();
-  }, [paginaActual, fechaSeleccionada, fetchData]); // Correct dependency array
-
-  const handlePaginaAnterior = () => {
-    if (paginaActual > 1) {
-      setPaginaActual(paginaActual - 1);
-    }
-  };
-
-  const handlePaginaSiguiente = () => {
-    if (paginaActual < totalPaginas) {
-      setPaginaActual(paginaActual + 1);
-    }
-  };
-
-  const handleFechaSeleccionada = (date) => {
-    setFechaSeleccionada(date);
-    setPaginaActual(1);
-  };
-
+  }, [paginaActual, fechaSeleccionada, fetchData]);
 
   const determinarNivelGeneral = (temperatura, humedad, co2) => {
     if (temperatura > TEMPERATURA_CRITICA || humedad > HUMEDAD_CRITICA || co2 > CO2_CRITICO) {
