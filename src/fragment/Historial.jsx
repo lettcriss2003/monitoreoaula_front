@@ -25,40 +25,6 @@ const Historial = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const token = getToken();
 
-  // Using useCallback to memoize fetchData
-  const fetchData = useCallback(async () => {
-    try {
-      const fechaFormatted = fechaSeleccionada ? fechaSeleccionada.toISOString().slice(0, 10) : '';
-      const response = await PeticionGet(token, `/datosBusqueda?pagina=${paginaActual}&items=${itemsPorPagina}&fecha=${fechaFormatted}`);
-      const historialAgrupado = agruparDatos(response.info);
-      setDatos(historialAgrupado);
-      setTotalPaginas(Math.ceil(response.total / (itemsPorPagina * 3)));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [token, paginaActual, fechaSeleccionada]); // Add all necessary dependencies
-
-  useEffect(() => {
-    fetchData();
-  }, [paginaActual, fechaSeleccionada, fetchData]); // Correct dependency array
-
-  const handlePaginaAnterior = () => {
-    if (paginaActual > 1) {
-      setPaginaActual(paginaActual - 1);
-    }
-  };
-
-  const handlePaginaSiguiente = () => {
-    if (paginaActual < totalPaginas) {
-      setPaginaActual(paginaActual + 1);
-    }
-  };
-
-  const handleFechaSeleccionada = (date) => {
-    setFechaSeleccionada(date);
-    setPaginaActual(1);
-  };
-
   const agruparDatos = (datos) => {
     const historialAgrupado = {};
     datos.forEach((dato) => {
@@ -82,6 +48,41 @@ const Historial = () => {
       };
     });
   };
+
+  // Using useCallback to memoize fetchData
+  const fetchData = useCallback(async () => {
+    try {
+      const fechaFormatted = fechaSeleccionada ? fechaSeleccionada.toISOString().slice(0, 10) : '';
+      const response = await PeticionGet(token, `/datosBusqueda?pagina=${paginaActual}&items=${itemsPorPagina}&fecha=${fechaFormatted}`);
+      const historialAgrupado = agruparDatos(response.info);
+      setDatos(historialAgrupado);
+      setTotalPaginas(Math.ceil(response.total / (itemsPorPagina * 3)));
+    } catch (error) {
+      console.error(error);
+    }
+  }, [token, paginaActual, fechaSeleccionada, agruparDatos]); // Añadir agruparDatos aquí
+
+  useEffect(() => {
+    fetchData();
+  }, [paginaActual, fechaSeleccionada, fetchData]); // Correct dependency array
+
+  const handlePaginaAnterior = () => {
+    if (paginaActual > 1) {
+      setPaginaActual(paginaActual - 1);
+    }
+  };
+
+  const handlePaginaSiguiente = () => {
+    if (paginaActual < totalPaginas) {
+      setPaginaActual(paginaActual + 1);
+    }
+  };
+
+  const handleFechaSeleccionada = (date) => {
+    setFechaSeleccionada(date);
+    setPaginaActual(1);
+  };
+
 
   const determinarNivelGeneral = (temperatura, humedad, co2) => {
     if (temperatura > TEMPERATURA_CRITICA || humedad > HUMEDAD_CRITICA || co2 > CO2_CRITICO) {
