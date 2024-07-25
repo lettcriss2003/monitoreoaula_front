@@ -10,25 +10,25 @@ export default function ExportOptions({ chartRef, nombreFoto }) {
     const [data, setData] = useState(null); // Estado para almacenar los datos obtenidos
     const token = getToken();
 
-    const fetchData = async () => {
-        try {
-            const response = await PeticionGet(token, `/datos`);
-
-            // Organizar los datos por tipo de sensor
-            const temperaturaData = response.info.filter(item => item.id_sensor === 2);
-            const humedadData = response.info.filter(item => item.id_sensor === 1);
-            const co2Data = response.info.filter(item => item.id_sensor === 3);
-
-            setData({ temperatura: temperaturaData, humedad: humedadData, co2: co2Data });
-
-        } catch (error) {
-            console.error('Error al obtener los datos:', error);
-        }
-    };
-
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await PeticionGet(token, `/datos`);
+
+                // Organizar los datos por tipo de sensor
+                const temperaturaData = response.info.filter(item => item.id_sensor === 2);
+                const humedadData = response.info.filter(item => item.id_sensor === 1);
+                const co2Data = response.info.filter(item => item.id_sensor === 3);
+
+                setData({ temperatura: temperaturaData, humedad: humedadData, co2: co2Data });
+
+            } catch (error) {
+                console.error('Error al obtener los datos:', error);
+            }
+        };
+
         fetchData(); // Obtener datos por defecto al montar el componente
-    }, []);
+    }, [token]); // Incluye 'token' en las dependencias
 
     const exportChart = () => {
         const node = chartRef.current;
