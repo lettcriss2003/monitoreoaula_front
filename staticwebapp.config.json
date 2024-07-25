@@ -4,8 +4,9 @@
   },
   "routes": [
     {
-      "route": "/{*path}",
-      "serve": "/index.html"
+      "route": "/{*path}.{*ext}",
+      "serve": "/index.html",
+      "statusCode": 200
     }
   ]
 }
