@@ -9,7 +9,8 @@ export const LoginPost= async (data,url) => {
     const datos = await (await fetch(`${URL_BACKEND}/${url}`, {
         method: "POST",
         headers: headers,
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        mode: 'no-cors' // Disable CORS checks
     })).json();
     return datos;
 }
