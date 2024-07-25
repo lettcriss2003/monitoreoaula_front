@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { LoginPost } from '../hooks/Conexion';
 import { useNavigate } from 'react-router';
-import mensajes from '../utilidades/Mensajes';
-import logo from '../logo.png';
-import BarraMenu from './BarraMenu';
 import '../components/css/style.css';
+import { LoginPost } from '../hooks/Conexion';
+import logo from '../logo.png';
+import mensajes from '../utilidades/Mensajes';
 
 const Registro = () => {
     const navigate = useNavigate();

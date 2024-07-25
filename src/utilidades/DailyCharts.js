@@ -73,7 +73,7 @@ const DailyCharts = ({ selectedChart }) => {
 
     useEffect(() => {
         fetchData();
-    }, [selectedChart]);
+    }, [selectedChart, fetchData]);
 
     const options = {
         scales: {

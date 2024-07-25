@@ -11,7 +11,7 @@ export default function ExportOptions({ chartRef, nombreFoto }) {
 
     useEffect(() => {
         fetchData(); // Obtener datos por defecto al montar el componente
-    }, []);
+    }, [fetchData]);
     const token = getToken();
 
     const fetchData = async () => {
