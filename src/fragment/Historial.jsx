@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import BarraMenu from './BarraMenu';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PeticionGet } from '../hooks/Conexion';
@@ -25,11 +25,8 @@ const Historial = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const token = getToken();
 
-  useEffect(() => {
-    fetchData();
-  }, [paginaActual, fechaSeleccionada, fetchData]);
-
-  const fetchData = async () => {
+  // Using useCallback to memoize fetchData
+  const fetchData = useCallback(async () => {
     try {
       const fechaFormatted = fechaSeleccionada ? fechaSeleccionada.toISOString().slice(0, 10) : '';
       const response = await PeticionGet(token, `/datosBusqueda?pagina=${paginaActual}&items=${itemsPorPagina}&fecha=${fechaFormatted}`);
@@ -39,7 +36,11 @@ const Historial = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [token, paginaActual, fechaSeleccionada]); // Add all necessary dependencies
+
+  useEffect(() => {
+    fetchData();
+  }, [paginaActual, fechaSeleccionada, fetchData]); // Correct dependency array
 
   const handlePaginaAnterior = () => {
     if (paginaActual > 1) {

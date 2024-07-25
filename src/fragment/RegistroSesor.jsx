@@ -10,7 +10,6 @@ import { getToken } from '../utilidades/Sessionutil';
 const RegistroSensor = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [isLoading, setIsLoading] = useState(false);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [formData, setFormData] = useState({});
 
@@ -20,7 +19,6 @@ const RegistroSensor = () => {
     };
 
     const handleConfirm = () => {
-        setIsLoading(true);
         setShowConfirmModal(false);
         mensajes('Guardando información...', 'info', 'Información');
 

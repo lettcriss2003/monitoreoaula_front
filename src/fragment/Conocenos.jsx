@@ -1,12 +1,8 @@
 import React from 'react';
 import '../components/css/style.css';
-import BarraMenu from './BarraMenu';
-import miembro1 from '../miembro1.png';
-import miembro2 from '../miembro2.png';
-import miembro3 from '../miembro3.png';
-import miembro4 from '../miembro4.png';
 import logo from '../logo.png';
 import logo_c from '../logo_c.png';
+import BarraMenu from './BarraMenu';
 
 
 export const Conocenos = () => {
@@ -62,28 +58,28 @@ export const Conocenos = () => {
             <div className="services" style={{ marginTop: 60 + 'px' }}>
               <div className="service">
                 {/**<a href={miembro1} target="_blank"><img className='miembro' src={miembro1} alt="img"></img></a>*/}
-                <h3><a href="https://github.com/Thaisncp" style={{ color: '#36ab2b' }} target="_blank">THAIS CARTUCHE</a></h3>
+                <h3><a href="https://github.com/Thaisncp" style={{ color: '#36ab2b' }} target="_blank"  rel="noopener noreferrer">THAIS CARTUCHE</a></h3>
                 <h4>Líder del equipo</h4> <br />
                 thais.cartuche@unl.edu.ec <br />
                 +593 99 065 4321 <br />
               </div>
               <div className="service">
                 {/**<a href={miembro2} target="_blank"><img className='miembro' src={miembro2} alt="img"></img></a>*/}
-                <h3><a href="https://github.com/luisNarvaez20" style={{ color: '#36ab2b' }} target="_blank">LUIS NARVAEZ</a></h3>
+                <h3><a href="https://github.com/luisNarvaez20" style={{ color: '#36ab2b' }} target="_blank"  rel="noopener noreferrer">LUIS NARVAEZ</a></h3>
                 <h4>Miembro del equipo</h4> <br />
                 luis.a.narvaez@unl.edu.ec <br />
                 +593 98 367 2082 <br />
               </div>
               <div className="service">
                 {/**<a href={miembro3} target="_blank"><img className='miembro' src={miembro3} alt="img"></img></a>*/}
-                <h3><a href="https://github.com/lettcriss2003" style={{ color: '#36ab2b' }} target="_blank">LETTY ROJAS</a></h3>
+                <h3><a href="https://github.com/lettcriss2003" style={{ color: '#36ab2b' }} target="_blank"  rel="noopener noreferrer">LETTY ROJAS</a></h3>
                 <h4>Miembro del equipo</h4> <br />
                 letty.rojas@unl.edu.ec <br />
                 +593 98 790 2694 <br />
               </div>
               <div className="service">
                 {/**<a href={miembro4} target="_blank"><img className='miembro' src={miembro4} alt="img"></img></a>*/}
-                <h3><a href="https://github.com/Maryuri931" style={{ color: '#36ab2b' }} target="_blank">MARYURI CONDOY</a></h3>
+                <h3><a href="https://github.com/Maryuri931" style={{ color: '#36ab2b' }} target="_blank"  rel="noopener noreferrer">MARYURI CONDOY</a></h3>
                 <h4>Miembro del equipo</h4> <br />
                 mayuri.condoy@unl.edu.ec <br />
                 +593 98 963 0322 <br />

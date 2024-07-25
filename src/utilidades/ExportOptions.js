@@ -10,7 +10,7 @@ export default function ExportOptions({ chartRef, nombreFoto }) {
     const [data, setData] = useState(null); // Estado para almacenar los datos obtenidos
 
     useEffect(() => {
-        fetchData('semana'); // Obtener datos por defecto al montar el componente
+        fetchData(); // Obtener datos por defecto al montar el componente
     }, []);
     const token = getToken();
 

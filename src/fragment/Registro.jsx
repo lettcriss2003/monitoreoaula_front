@@ -11,7 +11,6 @@ import '../components/css/style.css';
 const Registro = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
-    const [isLoading, setIsLoading] = useState(false); // Estado para controlar si se está cargando o no
 
     const onSubmit = (data) => {
         if (data.clave !== data.confirmarClave) {
@@ -19,7 +18,6 @@ const Registro = () => {
             return;
         }
 
-        setIsLoading(true); // Marcar como cargando antes de enviar la solicitud
         mensajes('Guardando información...', 'info', 'Información'); // Mostrar mensaje de guardado
 
         const datos = {
@@ -34,7 +32,6 @@ const Registro = () => {
         };
 
         LoginPost(datos, 'persona/usuario').then((info) => {
-            setIsLoading(false); // Marcar como no cargando después de recibir la respuesta
             if (info.code !== 200) {
                 mensajes(info.msg, "error", "Error");
             } else {

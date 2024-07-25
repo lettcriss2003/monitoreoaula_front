@@ -29,7 +29,7 @@ const Perfil = () => {
             }
         };
         fetchData();
-    }, [external]);
+    }, [external, token]);
 
     const formatearFecha = (fecha) => {
         const fechaUTC = new Date(fecha);

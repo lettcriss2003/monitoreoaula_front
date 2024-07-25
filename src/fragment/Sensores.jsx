@@ -37,7 +37,7 @@ const Sensores = () => {
       }
     };
     fetchSensores();
-  }, [filtro]);
+  }, [filtro, token]);
 
   const handleFiltroChange = (event) => {
     setFiltro(event.target.value);
