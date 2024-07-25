@@ -29,6 +29,10 @@ jobs:
       - run: npm install
 
       - run: npm run build
+      
+      # Post-build step (optional)
+      - name: Run Post-build Script
+        run: npm run postbuild
 
       - name: Build And Deploy
         id: builddeploy
