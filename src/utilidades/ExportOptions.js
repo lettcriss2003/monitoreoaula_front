@@ -8,10 +8,6 @@ import { getToken } from './Sessionutil';
 
 export default function ExportOptions({ chartRef, nombreFoto }) {
     const [data, setData] = useState(null); // Estado para almacenar los datos obtenidos
-
-    useEffect(() => {
-        fetchData(); // Obtener datos por defecto al montar el componente
-    }, [fetchData]);
     const token = getToken();
 
     const fetchData = async () => {
@@ -29,6 +25,10 @@ export default function ExportOptions({ chartRef, nombreFoto }) {
             console.error('Error al obtener los datos:', error);
         }
     };
+
+    useEffect(() => {
+        fetchData(); // Obtener datos por defecto al montar el componente
+    }, []);
 
     const exportChart = () => {
         const node = chartRef.current;
