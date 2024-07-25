@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Offcanvas, Modal, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { borrarSesion, getToken, getRol } from '../utilidades/Sessionutil';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -81,7 +82,7 @@ const NavLink = ({ classNameNav, handleShowModal }) => {
                     <span className="nav-link" style={navLinkStyle}><i className="fas fa-user-circle"></i> Mi cuenta</span>
                     <ul className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
                         <Nav.Link as="span" className="dropdown-item" style={navLinkStyle} onClick={handleShowModal}><i className="fas fa-user-plus"></i> Registrarse</Nav.Link>
-                        <Nav.Link href="/iniciar-sesion" className="dropdown-item" style={navLinkStyle}><i className="fas fa-sign-in-alt"></i> Iniciar sesión</Nav.Link>
+                        <Link href="/iniciar-sesion" className="dropdown-item" style={navLinkStyle}><i className="fas fa-sign-in-alt"></i> Iniciar sesión</Link>
                     </ul>
                 </li>
             )}
