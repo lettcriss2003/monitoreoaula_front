@@ -27,7 +27,7 @@ const Historial = () => {
 
   useEffect(() => {
     fetchData();
-  }, [paginaActual, fechaSeleccionada]);
+  }, [paginaActual, fechaSeleccionada, fetchData]);
 
   const fetchData = async () => {
     try {
