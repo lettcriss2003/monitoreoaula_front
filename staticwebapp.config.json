@@ -1,5 +1,15 @@
 {
     "platform": {
       "apiRuntime": "node:16"
-    }
+    },
+    "routes": [
+      {
+        "route": "/",
+        "serve": "/index.html"
+      },
+      {
+        "route": "/*",
+        "serve": "/index.html"
+      }
+    ]
   }
