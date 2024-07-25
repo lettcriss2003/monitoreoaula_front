@@ -28,52 +28,52 @@ const DailyCharts = ({ selectedChart }) => {
     const [chartData, setChartData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const fetchData = async () => {
-        setLoading(true);
-        try {
-            let response;
-            if (selectedChart === 'temperatura') {
-                response = await PeticionGet(getToken(), 'datos/temperaturaDia');
-            } else if (selectedChart === 'humedad') {
-                response = await PeticionGet(getToken(), 'datos/humedadDia');
-            } else if (selectedChart === 'co2') {
-                response = await PeticionGet(getToken(), 'datos/co2Dia');
-            }
-    
-            console.log('Datos recibidos:', response); // Verifica la estructura de los datos
-    
-            if (response && response.info) {
-                setChartData({
-                    labels: response.info.map(d => d.hora || d.fecha), // Ajustar según los datos
-                    datasets: [
-                        {
-                            label: selectedChart.charAt(0).toUpperCase() + selectedChart.slice(1),
-                            data: response.info.map(d => d.dato),
-                            borderColor: 'rgb(12, 35, 65)',
-                            backgroundColor: 'rgba(12, 35, 65, 0.5)',
-                            tension: 0.5,
-                            fill: true,
-                            pointRadius: 5,
-                            pointBorderColor: 'rgba(12, 35, 65)',
-                            pointBackgroundColor: 'rgba(12, 35, 65)',
-                        }
-                    ],
-                });
-            } else {
-                console.error('No se recibieron datos válidos:', response);
-                setChartData(null);
-            }
-        } catch (error) {
-            console.error('Error al obtener los datos:', error);
-            setChartData(null);
-        } finally {
-            setLoading(false);
-        }
-    };    
-
     useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                let response;
+                if (selectedChart === 'temperatura') {
+                    response = await PeticionGet(getToken(), 'datos/temperaturaDia');
+                } else if (selectedChart === 'humedad') {
+                    response = await PeticionGet(getToken(), 'datos/humedadDia');
+                } else if (selectedChart === 'co2') {
+                    response = await PeticionGet(getToken(), 'datos/co2Dia');
+                }
+        
+                console.log('Datos recibidos:', response); // Verifica la estructura de los datos
+        
+                if (response && response.info) {
+                    setChartData({
+                        labels: response.info.map(d => d.hora || d.fecha), // Ajustar según los datos
+                        datasets: [
+                            {
+                                label: selectedChart.charAt(0).toUpperCase() + selectedChart.slice(1),
+                                data: response.info.map(d => d.dato),
+                                borderColor: 'rgb(12, 35, 65)',
+                                backgroundColor: 'rgba(12, 35, 65, 0.5)',
+                                tension: 0.5,
+                                fill: true,
+                                pointRadius: 5,
+                                pointBorderColor: 'rgba(12, 35, 65)',
+                                pointBackgroundColor: 'rgba(12, 35, 65)',
+                            }
+                        ],
+                    });
+                } else {
+                    console.error('No se recibieron datos válidos:', response);
+                    setChartData(null);
+                }
+            } catch (error) {
+                console.error('Error al obtener los datos:', error);
+                setChartData(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+
         fetchData();
-    }, [selectedChart, fetchData]);
+    }, [selectedChart]); // Solo incluir 'selectedChart' en las dependencias
 
     const options = {
         scales: {
