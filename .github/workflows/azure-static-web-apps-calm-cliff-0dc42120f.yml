@@ -19,6 +19,17 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      # Setup Node.js version 18.x
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - run: npm install
+
+      - run: npm run build
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
