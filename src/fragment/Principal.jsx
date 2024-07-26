@@ -81,28 +81,28 @@ const Principal = () => {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Óptimo</td>
-                                            <td>{metricas.TEMPERATURA_OPTIMA}°C</td>
-                                            <td>{metricas.HUMEDAD_OPTIMA}%</td>
-                                            <td>{metricas.CO2_OPTIMO} ppm </td>
+                                            <td className='text-center'>Óptimo</td>
+                                            <td className='text-center'>{metricas.TEMPERATURA_OPTIMA}°C</td>
+                                            <td className='text-center'>{metricas.HUMEDAD_OPTIMA}%</td>
+                                            <td className='text-center'>{metricas.CO2_OPTIMO} ppm </td>
                                         </tr>
                                         <tr>
-                                            <td>Aceptable</td>
-                                            <td>{metricas.TEMPERATURA_ACEPTABLE}°C</td>
-                                            <td>{metricas.HUMEDAD_ACEPTABLE}%</td>
-                                            <td>{metricas.CO2_ACEPTABLE} ppm</td>
+                                            <td className='text-center'>Aceptable</td>
+                                            <td className='text-center'>{metricas.TEMPERATURA_ACEPTABLE}°C</td>
+                                            <td className='text-center'>{metricas.HUMEDAD_ACEPTABLE}%</td>
+                                            <td className='text-center'>{metricas.CO2_ACEPTABLE} ppm</td>
                                         </tr>
                                         <tr>
-                                            <td>Deficiente</td>
-                                            <td>{metricas.TEMPERATURA_DEFICIENTE}°C</td>
-                                            <td>{metricas.HUMEDAD_DEFICIENTE}%</td>
-                                            <td>{metricas.CO2_DEFICIENTE} ppm</td>
+                                            <td className='text-center'>Deficiente</td>
+                                            <td className='text-center'>{metricas.TEMPERATURA_DEFICIENTE}°C</td>
+                                            <td className='text-center'>{metricas.HUMEDAD_DEFICIENTE}%</td>
+                                            <td className='text-center'>{metricas.CO2_DEFICIENTE} ppm</td>
                                         </tr>
                                         <tr>
-                                            <td>Crítico</td>
-                                            <td>{metricas.TEMPERATURA_CRITICA}°C</td>
-                                            <td>{metricas.HUMEDAD_CRITICA}%</td>
-                                            <td>{metricas.CO2_CRITICO} ppm</td>
+                                            <td className='text-center'>Crítico</td>
+                                            <td className='text-center'>{metricas.TEMPERATURA_CRITICA}°C</td>
+                                            <td className='text-center'>{metricas.HUMEDAD_CRITICA}%</td>
+                                            <td className='text-center'>{metricas.CO2_CRITICO} ppm</td>
                                         </tr>
                                     </tbody>
                                 </table>
