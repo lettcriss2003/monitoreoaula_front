@@ -24,6 +24,23 @@ ChartJS.register(
     Filler
 );
 
+const getPointBackgroundColor = (value, dispositivo) => {
+    if (dispositivo === 'temperatura') {
+        if (value < 16) return '#ebdb52';
+        if (value <= 28) return '#d89415';
+        return '#e07730';
+    } else if (dispositivo === 'humedad') {
+        if (value < 30) return '#5683a5';
+        if (value <= 70) return '#0d4f81';
+        return 'rgb(12, 35, 65)';
+    } else if (dispositivo === 'co2') {
+        if (value < 600) return '#a4e480';
+        if (value <= 1000) return '#36ab2b';
+        return '#347210';
+    }
+    return 'rgba(12, 35, 65)';
+};
+
 const DailyCharts = ({ selectedChart }) => {
     const [chartData, setChartData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -40,9 +57,9 @@ const DailyCharts = ({ selectedChart }) => {
                 } else if (selectedChart === 'co2') {
                     response = await PeticionGet(getToken(), 'datos/co2Dia');
                 }
-        
+
                 console.log('Datos recibidos:', response); // Verifica la estructura de los datos
-        
+
                 if (response && response.info) {
                     setChartData({
                         labels: response.info.map(d => d.hora || d.fecha), // Ajustar según los datos
@@ -50,13 +67,13 @@ const DailyCharts = ({ selectedChart }) => {
                             {
                                 label: selectedChart.charAt(0).toUpperCase() + selectedChart.slice(1),
                                 data: response.info.map(d => d.dato),
-                                borderColor: 'rgb(12, 35, 65)',
-                                backgroundColor: 'rgba(12, 35, 65, 0.5)',
+                                borderColor: 'rgb(211, 211, 211)',
+                                backgroundColor: 'rgba(211, 211, 211, 0.5)', 
                                 tension: 0.5,
                                 fill: true,
                                 pointRadius: 5,
-                                pointBorderColor: 'rgba(12, 35, 65)',
-                                pointBackgroundColor: 'rgba(12, 35, 65)',
+                                pointBorderColor: 'rgba(211, 211, 211, 0.5)',
+                                pointBackgroundColor: response.info.map(d => getPointBackgroundColor(d.dato, selectedChart)),
                             }
                         ],
                     });

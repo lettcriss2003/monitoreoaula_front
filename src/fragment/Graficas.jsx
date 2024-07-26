@@ -146,14 +146,23 @@ const MapComponent = () => {
                         <tr>
                             <td>Altas Temperaturas</td>
                             <td className='text-center'> Mayor a 28 °C </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#e07730' }}></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Temperatura Normal</td>
                             <td className='text-center'> Entre 16 - 28 °C </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#d89415' }}></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Bajas Temperaturas</td>
                             <td className='text-center'> Menor a 16 °C </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#ebdb52' }}></div>
+                            </td>
                         </tr>
 
                     </>
@@ -164,14 +173,23 @@ const MapComponent = () => {
                         <tr>
                             <td>Humedad Alta</td>
                             <td className='text-center'> Mayor a 70% </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: 'rgb(12, 35, 65)' }}></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Humedad Normal</td>
                             <td className='text-center'> Entre 30% - 70% </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#0d4f81' }}></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Ambiente Seco</td>
                             <td className='text-center'> Menor a 30% </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#5683a5' }}></div>
+                            </td>
                         </tr>
 
                     </>
@@ -180,16 +198,25 @@ const MapComponent = () => {
                 return (
                     <>
                         <tr>
-                            <td>Aire Puro</td>
-                            <td className='text-center'> Menor a 600 ppm </td>
+                            <td>Alta Cantidad de Gases</td>
+                            <td className='text-center'> Mayor a 1000 ppm </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#347210' }}></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Moderada Cantidad de Gases</td>
                             <td className='text-center'> Entre 600 - 1000 ppm </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#36ab2b' }}></div>
+                            </td>
                         </tr>
                         <tr>
-                            <td>Alta Cantidad de Gases</td>
-                            <td className='text-center'> Mayor a 1000 ppm </td>
+                            <td>Aire Puro</td>
+                            <td className='text-center'> Menor a 600 ppm </td>
+                            <td className='text-center'>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#a4e480' }}></div>
+                            </td>
                         </tr>
                     </>
                 );
@@ -232,6 +259,7 @@ const MapComponent = () => {
                                                                 <tr>
                                                                     <th>CLASIFICACIÓN</th>
                                                                     <th>RANGO</th>
+                                                                    <th>COLOR</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>

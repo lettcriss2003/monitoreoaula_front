@@ -9,6 +9,8 @@ import DrawerIndicador from '../fragment/DrawerIndicator';
 import { Indicadores } from '../fragment/TablaIndicadores';
 import { Indicador } from '../fragment/Indicador';
 import { PeticionGet } from '../hooks/Conexion';
+import * as metricas from '../utilidades/constantes/metricas';
+import '../components/css/style.css';
 
 const Principal = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -60,29 +62,80 @@ const Principal = () => {
                     <div className="col-md-12 d-flex justify-content-center">
                         <div className="position-relative d-inline-flex align-items-center">
                             <h1 className="text-center mb-0 mx-2">Monitoreo del aire en el Aula Magna</h1>
-                            <Tooltip title="Ver métricas">
-                                <IconButton
-                                    onClick={toggleDrawer(true)}
-                                    style={{
-                                        position: 'absolute',
-                                        top: '-10px',
-                                        right: '-40px',
-                                        backgroundColor: '#f0f0f0',
-                                        boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
-                                    }}
-                                >
-                                    <InfoOutlinedIcon />
-                                </IconButton>
-                            </Tooltip>
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-column align-items-center mt-5">
-                    <strong className="mb-3">Indicador actual de la calidad del aire:</strong>
-                    <Indicador />
-                </div>
+
                 <div className="row mt-4 w-100 justify-content-center">
-                    <ValoresSensores />
+                    <div className="row">
+                        <div className="col-md-4 d-flex flex-column justify-content-center">
+                            <div className="table-responsive">
+                                <table className="table table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th>Indicador</th>
+                                            <th>Temperatura</th>
+                                            <th>Humedad</th>
+                                            <th>CO2 </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Óptimo</td>
+                                            <td>{metricas.TEMPERATURA_OPTIMA}°C</td>
+                                            <td>{metricas.HUMEDAD_OPTIMA}%</td>
+                                            <td>{metricas.CO2_OPTIMO} ppm </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aceptable</td>
+                                            <td>{metricas.TEMPERATURA_ACEPTABLE}°C</td>
+                                            <td>{metricas.HUMEDAD_ACEPTABLE}%</td>
+                                            <td>{metricas.CO2_ACEPTABLE} ppm</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Deficiente</td>
+                                            <td>{metricas.TEMPERATURA_DEFICIENTE}°C</td>
+                                            <td>{metricas.HUMEDAD_DEFICIENTE}%</td>
+                                            <td>{metricas.CO2_DEFICIENTE} ppm</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Crítico</td>
+                                            <td>{metricas.TEMPERATURA_CRITICA}°C</td>
+                                            <td>{metricas.HUMEDAD_CRITICA}%</td>
+                                            <td>{metricas.CO2_CRITICO} ppm</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="position-relative d-inline-flex">
+                                <p className="text-center">Ver info: </p>
+                                <Tooltip
+    title="Ver métricas"
+>
+    <IconButton
+        onClick={toggleDrawer(true)}
+        style={{
+            position: 'absolute',
+            top: '-10px',
+            left: '80px',
+            backgroundColor: '#f0f0f0',
+            boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+        }}
+    >
+        <InfoOutlinedIcon />
+    </IconButton>
+</Tooltip>
+
+                            </div>
+                        </div>
+                        <div className="col-md-8 mx-auto">
+                            <div className="d-flex flex-column align-items-center">
+                                <strong className="mb-3">Indicador actual de la calidad del aire:</strong>
+                                <Indicador />
+                            </div>
+                            <ValoresSensores />
+                        </div>
+                    </div>
                 </div>
                 <div className="row mt-4 w-100">
                     <h3 className="text-center mb-4">Gráfica de datos del día</h3>

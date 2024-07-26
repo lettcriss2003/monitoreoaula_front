@@ -1,1 +1,0 @@
-export const TIMEREFETCHING = 1500000;

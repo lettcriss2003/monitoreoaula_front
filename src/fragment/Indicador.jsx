@@ -4,6 +4,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { PeticionGetSinToken } from '../hooks/Conexion';
 import * as metricas from '../utilidades/constantes/metricas';
 import { TIMEREFETCHING } from '../utilidades/constantes/refetching';
+import '../components/css/indicador.css'; 
 
 export const Indicador = () => {
     const [nivelGeneral, setNivelGeneral] = useState();
@@ -40,42 +41,38 @@ export const Indicador = () => {
     };
 
     return (
-        <div className="p-2 mb-2 rounded">
+        <div className="container-fluid d-flex flex-column align-items-center">
             <ToggleButtonGroup
                 value={nivelGeneral}
                 exclusive
                 aria-label="Indicador General"
-                style={{ display: 'flex', justifyContent: 'space-between' }}
+                className="toggle-button-group"
             >
                 <ToggleButton
                     value="Óptimo"
                     disabled={nivelGeneral !== 'Óptimo'}
-                    style={{ flex: 1, margin: '0 5px', minWidth: '200px' }}
-                    className={`btn ${nivelGeneral === 'Óptimo' ? 'bg-success text-white' : ''}`}
+                    className={`btn ${nivelGeneral === 'Óptimo' ? 'bg-success text-white' : ''} toggle-button`}
                 >
                     Óptimo
                 </ToggleButton>
                 <ToggleButton
                     value="Aceptable"
                     disabled={nivelGeneral !== 'Aceptable'}
-                    style={{ flex: 1, margin: '0 5px', minWidth: '200px' }}
-                    className={`btn ${nivelGeneral === 'Aceptable' ? 'bg-info text-white' : ''}`}
+                    className={`btn ${nivelGeneral === 'Aceptable' ? 'bg-info text-white' : ''} toggle-button`}
                 >
                     Aceptable
                 </ToggleButton>
                 <ToggleButton
                     value="Deficiente"
                     disabled={nivelGeneral !== 'Deficiente'}
-                    style={{ flex: 1, margin: '0 5px', minWidth: '200px' }}
-                    className={`btn ${nivelGeneral === 'Deficiente' ? 'bg-warning text-dark' : ''}`}
+                    className={`btn ${nivelGeneral === 'Deficiente' ? 'bg-warning text-dark' : ''} toggle-button`}
                 >
                     Deficiente
                 </ToggleButton>
                 <ToggleButton
                     value="Crítico"
                     disabled={nivelGeneral !== 'Crítico'}
-                    style={{ flex: 1, margin: '0 5px', minWidth: '200px' }}
-                    className={`btn ${nivelGeneral === 'Crítico' ? 'bg-danger text-white' : ''}`}
+                    className={`btn ${nivelGeneral === 'Crítico' ? 'bg-danger text-white' : ''} toggle-button`}
                 >
                     Crítico
                 </ToggleButton>
