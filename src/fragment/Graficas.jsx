@@ -249,7 +249,7 @@ const MapComponent = () => {
                                         </div>
                                     </div>
                                     {Object.keys(dataGraficaDiaActual.dataPorDispositivos).map((dispositivoKey, index) => (
-                                        <div key={index} style={{ marginBottom: "350px", marginTop: "100px" }}>
+                                        <div key={index} style={{ marginBottom: "300px", marginTop: "75px" }}>
                                             <h3 className="texto-primario-h3">{dataGraficaDiaActual.dataPorDispositivos[dispositivoKey].nombre}</h3>
                                             <div className="crud shadow-lg p-3 mb-5 bg-body rounded" style={{ display: 'flex', flexDirection: 'column' }}>
                                                 <div className="col">

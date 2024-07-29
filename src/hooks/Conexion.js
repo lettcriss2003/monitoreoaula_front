@@ -1,4 +1,5 @@
-const URL_BACKEND = "https://monitoreoaula.azurewebsites.net/api"
+//const URL_BACKEND = "https://monitoreoaula.azurewebsites.net/api"
+const URL_BACKEND = "http://localhost:3000/api"
 
 export const LoginPost= async (data,url) => {
     console.log(url)

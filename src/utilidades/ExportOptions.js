@@ -126,6 +126,73 @@ export default function ExportOptions({ chartRef, nombreFoto }) {
         }
     };
 
+    const exportDataToCsv = async () => {
+        try {
+            if (!data || !data.temperatura || !data.humedad || !data.co2) {
+                console.error('No hay datos completos para exportar a CSV.');
+                return;
+            }
+
+            const csvData = data.temperatura.map((item, index) => ({
+                Fecha: item.fecha,
+                Hora: item.hora,
+                Temperatura: item.dato,
+                Humedad: data.humedad[index].dato,
+                CO2: data.co2[index].dato,
+            }));
+
+            const csvContent = [
+                ['Fecha', 'Hora', 'Temperatura', 'Humedad', 'CO2'],
+                ...csvData.map(item => [
+                    item.Fecha,
+                    item.Hora,
+                    item.Temperatura,
+                    item.Humedad,
+                    item.CO2
+                ])
+            ]
+                .map(e => e.join(","))
+                .join("\n");
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${nombreFoto}_week_data_${Date.now()}.csv`);
+            link.click();
+
+        } catch (error) {
+            console.error('Error al exportar a CSV:', error);
+        }
+    };
+
+    const exportDataToJson = async () => {
+        try {
+            if (!data || !data.temperatura || !data.humedad || !data.co2) {
+                console.error('No hay datos completos para exportar a JSON.');
+                return;
+            }
+
+            const jsonData = data.temperatura.map((item, index) => ({
+                Fecha: item.fecha,
+                Hora: item.hora,
+                Temperatura: item.dato,
+                Humedad: data.humedad[index].dato,
+                CO2: data.co2[index].dato,
+            }));
+
+            const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${nombreFoto}_week_data_${Date.now()}.json`);
+            link.click();
+
+        } catch (error) {
+            console.error('Error al exportar a JSON:', error);
+        }
+    };
+
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <button style={{ flex: 1, margin: '5px', display: 'flex', alignItems: 'center' }} className="boton btn" onClick={exportChart}>
@@ -143,6 +210,14 @@ export default function ExportOptions({ chartRef, nombreFoto }) {
             <button style={{ flex: 1, margin: '5px', display: 'flex', alignItems: 'center' }} className="boton btn" onClick={exportDataToPdf}>
                 <i className="fas fa-file-pdf" style={{ marginRight: '10px' }}></i>
                 PDF
+            </button>
+            <button style={{ flex: 1, margin: '5px', display: 'flex', alignItems: 'center' }} className="boton btn" onClick={exportDataToCsv}>
+                <i className="fas fa-file-csv" style={{ marginRight: '10px' }}></i>
+                CSV
+            </button>
+            <button style={{ flex: 1, margin: '5px', display: 'flex', alignItems: 'center' }} className="boton btn" onClick={exportDataToJson}>
+                <i className="fas fa-file-code" style={{ marginRight: '10px' }}></i>
+                JSON
             </button>
         </div>
     );
