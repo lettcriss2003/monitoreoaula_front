@@ -1,3 +1,4 @@
+// 
 export const TEMPERATURA_CRITICA = 40;
 export const HUMEDAD_CRITICA = 80;
 export const CO2_CRITICO = 1200;
