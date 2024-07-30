@@ -9,7 +9,6 @@ import DrawerIndicador from '../fragment/DrawerIndicator';
 import { Indicadores } from '../fragment/TablaIndicadores';
 import { Indicador } from '../fragment/Indicador';
 import { PeticionGet } from '../hooks/Conexion';
-import * as metricas from '../utilidades/constantes/metricas';
 import '../components/css/style.css';
 
 const Principal = () => {
