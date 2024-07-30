@@ -147,14 +147,14 @@ const MapComponent = () => {
                             <td>Altas Temperaturas</td>
                             <td className='text-center'> Mayor a 28 °C </td>
                             <td className='text-center'>
-                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#e07730' }}></div>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#ff2600' }}></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Temperatura Normal</td>
                             <td className='text-center'> Entre 16 - 28 °C </td>
                             <td className='text-center'>
-                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#d89415' }}></div>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#ee823b' }}></div>
                             </td>
                         </tr>
                         <tr>
@@ -174,7 +174,7 @@ const MapComponent = () => {
                             <td>Humedad Alta</td>
                             <td className='text-center'> Mayor a 70% </td>
                             <td className='text-center'>
-                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: 'rgb(12, 35, 65)' }}></div>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#0b0427' }}></div>
                             </td>
                         </tr>
                         <tr>
@@ -188,7 +188,7 @@ const MapComponent = () => {
                             <td>Ambiente Seco</td>
                             <td className='text-center'> Menor a 30% </td>
                             <td className='text-center'>
-                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#5683a5' }}></div>
+                                <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#afc7df' }}></div>
                             </td>
                         </tr>
 
@@ -249,7 +249,7 @@ const MapComponent = () => {
                                         </div>
                                     </div>
                                     {Object.keys(dataGraficaDiaActual.dataPorDispositivos).map((dispositivoKey, index) => (
-                                        <div key={index} style={{ marginBottom: "300px", marginTop: "75px" }}>
+                                        <div key={index} style={{ marginBottom: "250px", marginTop: "75px" }}>
                                             <h3 className="texto-primario-h3">{dataGraficaDiaActual.dataPorDispositivos[dispositivoKey].nombre}</h3>
                                             <div className="crud shadow-lg p-3 mb-5 bg-body rounded" style={{ display: 'flex', flexDirection: 'column' }}>
                                                 <div className="col">

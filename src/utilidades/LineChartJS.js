@@ -27,12 +27,12 @@ ChartJS.register(
 const getPointBackgroundColor = (value, dispositivo) => {
     if (dispositivo === 'Temperatura') {
         if (value < 16) return '#ebdb52';
-        if (value <= 28) return '#d89415';
-        return '#e07730';
+        if (value <= 28) return '#ee823b';
+        return '#ff2600';
     } else if (dispositivo === 'Humedad') {
-        if (value < 30) return '#5683a5';
+        if (value < 30) return '#afc7df';
         if (value <= 70) return '#0d4f81';
-        return 'rgb(12, 35, 65)';
+        return '#0b0427';
     } else if (dispositivo === 'CO2') {
         if (value < 600) return '#a4e480';
         if (value <= 1000) return '#36ab2b';
@@ -55,10 +55,8 @@ export default function LineChartJS({ data, nombreFoto }) {
                     data: listacolumna2.datos,
                     tension: 0.5,
                     fill: true,
-                    borderColor: 'rgb(211, 211, 211)',
                     backgroundColor: 'rgba(211, 211, 211, 0.5)', 
                     pointRadius: 4,
-                    pointBorderColor: 'rgba(211, 211, 211, 0.5)',
                     pointBackgroundColor: listacolumna2.datos.map(value => getPointBackgroundColor(value, nombre)),
                 },
             ],

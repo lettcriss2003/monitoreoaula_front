@@ -72,8 +72,8 @@ const Chatbot = () => {
             <Paper elevation={3} sx={{ flex: 1, overflowY: 'auto', p: 2 }}>
                 {messages.map((message, index) => (
                     <Box key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start', mb: 1 }}>
-                        <Paper elevation={1} sx={{ p: 1, bgcolor: message.sender === 'user' ? '#3DE77D' : '#36ab2b' }}>
-                            <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>
+                        <Paper elevation={1} sx={{ p: 1, bgcolor: message.sender === 'user' ? '#36ab2b' : '#BDBDBD' }}>
+                        <Typography variant="body1" sx={{ color: message.sender === 'user' ? '#FFFFFF' : '#333333', fontWeight: 'bold' }}>
                                 {getIconForSender(message.sender)}
                                 {message.text}
                             </Typography>

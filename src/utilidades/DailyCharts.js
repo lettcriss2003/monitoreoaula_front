@@ -27,12 +27,12 @@ ChartJS.register(
 const getPointBackgroundColor = (value, dispositivo) => {
     if (dispositivo === 'temperatura') {
         if (value < 16) return '#ebdb52';
-        if (value <= 28) return '#d89415';
-        return '#e07730';
+        if (value <= 28) return '#ee823b';
+        return '#ff2600';
     } else if (dispositivo === 'humedad') {
-        if (value < 30) return '#5683a5';
+        if (value < 30) return '#afc7df';
         if (value <= 70) return '#0d4f81';
-        return 'rgb(12, 35, 65)';
+        return '#0b0427';
     } else if (dispositivo === 'co2') {
         if (value < 600) return '#a4e480';
         if (value <= 1000) return '#36ab2b';
@@ -67,12 +67,10 @@ const DailyCharts = ({ selectedChart }) => {
                             {
                                 label: selectedChart.charAt(0).toUpperCase() + selectedChart.slice(1),
                                 data: response.info.map(d => d.dato),
-                                borderColor: 'rgb(211, 211, 211)',
                                 backgroundColor: 'rgba(211, 211, 211, 0.5)', 
                                 tension: 0.5,
                                 fill: true,
                                 pointRadius: 5,
-                                pointBorderColor: 'rgba(211, 211, 211, 0.5)',
                                 pointBackgroundColor: response.info.map(d => getPointBackgroundColor(d.dato, selectedChart)),
                             }
                         ],
