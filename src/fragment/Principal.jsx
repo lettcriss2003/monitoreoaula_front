@@ -69,40 +69,45 @@ const Principal = () => {
                 <div className="row mt-4 w-100 justify-content-center">
                     <div className="row">
                         <div className="col-md-4 d-flex flex-column justify-content-center">
+                        <p className="text-center">Rangos de calidad del aire: </p>
                             <div className="table-responsive">
-                                <table className="table table-striped ">
+                                <table className="table table-striped text-center">
                                     <thead>
                                         <tr>
                                             <th>Indicador</th>
+                                            <th colSpan="3">Rango</th>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
                                             <th>Temperatura</th>
                                             <th>Humedad</th>
-                                            <th>CO2 </th>
+                                            <th>CO2</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td className='text-center'>Óptimo</td>
-                                            <td className='text-center'>{metricas.TEMPERATURA_OPTIMA}°C</td>
-                                            <td className='text-center'>{metricas.HUMEDAD_OPTIMA}%</td>
-                                            <td className='text-center'>{metricas.CO2_OPTIMO} ppm </td>
+                                            <td>Óptima</td>
+                                            <td>16 °C a 24°C</td>
+                                            <td>40% a 50%</td>
+                                            <td>0 ppm a 400 ppm</td>
                                         </tr>
                                         <tr>
-                                            <td className='text-center'>Aceptable</td>
-                                            <td className='text-center'>{metricas.TEMPERATURA_ACEPTABLE}°C</td>
-                                            <td className='text-center'>{metricas.HUMEDAD_ACEPTABLE}%</td>
-                                            <td className='text-center'>{metricas.CO2_ACEPTABLE} ppm</td>
+                                            <td>Aceptable</td>
+                                            <td>14°C a 16 °C y de 24°C a 26°C</td>
+                                            <td>50% a 60%</td>
+                                            <td>400 ppm a 600 ppm</td>
                                         </tr>
                                         <tr>
-                                            <td className='text-center'>Deficiente</td>
-                                            <td className='text-center'>{metricas.TEMPERATURA_DEFICIENTE}°C</td>
-                                            <td className='text-center'>{metricas.HUMEDAD_DEFICIENTE}%</td>
-                                            <td className='text-center'>{metricas.CO2_DEFICIENTE} ppm</td>
+                                            <td>Deficiente</td>
+                                            <td>menor a 14°C y de 26°C a 28°C</td>
+                                            <td>60% a 70%</td>
+                                            <td>600 ppm a 800 pm</td>
                                         </tr>
                                         <tr>
-                                            <td className='text-center'>Crítico</td>
-                                            <td className='text-center'>{metricas.TEMPERATURA_CRITICA}°C</td>
-                                            <td className='text-center'>{metricas.HUMEDAD_CRITICA}%</td>
-                                            <td className='text-center'>{metricas.CO2_CRITICO} ppm</td>
+                                            <td>Crítica</td>
+                                            <td>Mayor a 28°C</td>
+                                            <td>Por encima del 70% y por debajo del 40%</td>
+                                            <td>Por encima de las 800 ppm</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -110,21 +115,21 @@ const Principal = () => {
                             <div className="position-relative d-inline-flex">
                                 <p className="text-center">Ver info: </p>
                                 <Tooltip
-    title="Ver métricas"
->
-    <IconButton
-        onClick={toggleDrawer(true)}
-        style={{
-            position: 'absolute',
-            top: '-10px',
-            left: '80px',
-            backgroundColor: '#f0f0f0',
-            boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-        }}
-    >
-        <InfoOutlinedIcon />
-    </IconButton>
-</Tooltip>
+                                    title="Ver métricas"
+                                >
+                                    <IconButton
+                                        onClick={toggleDrawer(true)}
+                                        style={{
+                                            position: 'absolute',
+                                            top: '-10px',
+                                            left: '80px',
+                                            backgroundColor: '#f0f0f0',
+                                            boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+                                        }}
+                                    >
+                                        <InfoOutlinedIcon />
+                                    </IconButton>
+                                </Tooltip>
 
                             </div>
                         </div>
@@ -133,7 +138,10 @@ const Principal = () => {
                                 <strong className="mb-3">Indicador actual de la calidad del aire:</strong>
                                 <Indicador />
                             </div>
-                            <ValoresSensores />
+                            <div className="d-flex flex-column align-items-center">
+                                <strong className="mb-3">Datos actuales</strong>
+                                <ValoresSensores />
+                            </div>
                         </div>
                     </div>
                 </div>

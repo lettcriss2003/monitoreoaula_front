@@ -5,17 +5,7 @@ import { PeticionGet } from '../hooks/Conexion';
 import { getToken } from '../utilidades/Sessionutil';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import {
-  TEMPERATURA_CRITICA,
-  HUMEDAD_CRITICA,
-  CO2_CRITICO,
-  TEMPERATURA_DEFICIENTE,
-  HUMEDAD_DEFICIENTE,
-  CO2_DEFICIENTE,
-  TEMPERATURA_ACEPTABLE,
-  HUMEDAD_ACEPTABLE,
-  CO2_ACEPTABLE
-} from '../utilidades/constantes/metricas'; // Ajusta la ruta según tu estructura
+import * as metricas from '../utilidades/constantes/metricas.js'; // Ajusta la ruta según tu estructura
 
 const Historial = () => {
   const [datos, setDatos] = useState([]);
@@ -50,16 +40,28 @@ const Historial = () => {
   }, []);
 
   const determinarNivelGeneral = (temperatura, humedad, co2) => {
-    if (temperatura > TEMPERATURA_CRITICA || humedad > HUMEDAD_CRITICA || co2 > CO2_CRITICO) {
-      return 'Crítico';
-    } else if (temperatura > TEMPERATURA_DEFICIENTE || humedad > HUMEDAD_DEFICIENTE || co2 > CO2_DEFICIENTE) {
-      return 'Deficiente';
-    } else if (temperatura > TEMPERATURA_ACEPTABLE || humedad > HUMEDAD_ACEPTABLE || co2 > CO2_ACEPTABLE) {
-      return 'Aceptable';
+    if (temperatura > metricas.TEMPERATURA_CRITICA || 
+        humedad > metricas.HUMEDAD_CRITICA_ALTA || 
+        humedad < metricas.HUMEDAD_CRITICA_BAJA || 
+        co2 > metricas.CO2_CRITICO) {
+        return 'Crítico';
+    } else if ((temperatura < metricas.TEMPERATURA_DEFICIENTE_BAJA || temperatura >= metricas.TEMPERATURA_DEFICIENTE_ALTA) || 
+               (humedad >= metricas.HUMEDAD_DEFICIENTE && humedad <= metricas.HUMEDAD_CRITICA_ALTA) || 
+               (co2 >= metricas.CO2_DEFICIENTE && co2 <= metricas.CO2_CRITICO)) {
+        return 'Deficiente';
+    } else if ((temperatura >= metricas.TEMPERATURA_ACEPTABLE_BAJA && temperatura < metricas.TEMPERATURA_OPTIMA_BAJA) || 
+               (temperatura > metricas.TEMPERATURA_OPTIMA_ALTA && temperatura <= metricas.TEMPERATURA_ACEPTABLE_ALTA) || 
+               (humedad >= metricas.HUMEDAD_ACEPTABLE && humedad < metricas.HUMEDAD_DEFICIENTE) || 
+               (co2 >= metricas.CO2_ACEPTABLE && co2 < metricas.CO2_DEFICIENTE)) {
+        return 'Aceptable';
+    } else if ((temperatura >= metricas.TEMPERATURA_OPTIMA_BAJA && temperatura <= metricas.TEMPERATURA_OPTIMA_ALTA) && 
+               (humedad >= metricas.HUMEDAD_OPTIMA_BAJA && humedad <= metricas.HUMEDAD_OPTIMA_ALTA) && 
+               (co2 >= metricas.CO2_OPTIMO && co2 < metricas.CO2_ACEPTABLE)) {
+        return 'Óptimo';
     } else {
-      return 'Óptimo';
+        return 'Desconocido';
     }
-  };
+};
 
   const fetchData = useCallback(async () => {
     try {
